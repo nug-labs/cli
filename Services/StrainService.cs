@@ -64,11 +64,29 @@ public class StrainService
 
         var q = query.Trim();
 
-        // Exact match on name only
+        bool Matches(object? value) =>
+            value != null &&
+            string.Equals(value.ToString(), q, StringComparison.OrdinalIgnoreCase);
+
         return all
             .Where(s =>
-                s.Data.TryGetValue("name", out var nameObj) &&
-                string.Equals(nameObj?.ToString(), q, StringComparison.OrdinalIgnoreCase))
+            {
+                // Exact match on name
+                if (s.Data.TryGetValue("name", out var nameObj) && Matches(nameObj))
+                    return true;
+
+                // Exact match on any AKA
+                if (s.Data.TryGetValue("akas", out var akasObj) && akasObj is IEnumerable<object?> akas)
+                {
+                    foreach (var aka in akas)
+                    {
+                        if (Matches(aka))
+                            return true;
+                    }
+                }
+
+                return false;
+            })
             .ToList();
     }
 }

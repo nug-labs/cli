@@ -6,7 +6,7 @@ var strainService = new StrainService();
 var refreshService = new DataRefreshService(strainService);
 
 // Background: refresh from API if last fetch > 12 hours
-var apiOption = "http://172.245.43.43:4008";
+var apiOption = "https://strains.nuglabs.co";
 refreshService.StartBackgroundRefresh(apiOption);
 
 var rootCommand = new RootCommand("nug-labs – search strains by name or term");
