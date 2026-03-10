@@ -29,10 +29,10 @@ jobs:
           dotnet-version: "8.0.x"
 
       - name: Restore dependencies
-        run: dotnet restore app/cli/NugLabs.Cli.csproj
+        run: dotnet restore NugLabs.Cli.csproj
 
       - name: Build
-        run: dotnet build app/cli/NugLabs.Cli.csproj --no-restore --configuration Release
+        run: dotnet build NugLabs.Cli.csproj --no-restore --configuration Release
 
   publish:
     needs: build-and-test
@@ -52,7 +52,7 @@ jobs:
           dotnet-version: "8.0.x"
 
       - name: Publish ${{ matrix.runtime }}
-        run: dotnet publish app/cli/NugLabs.Cli.csproj -c Release -r ${{ matrix.runtime }} --self-contained true -p:PublishSingleFile=true -o ./publish/${{ matrix.runtime }}
+        run: dotnet publish NugLabs.Cli.csproj -c Release -r ${{ matrix.runtime }} --self-contained true -p:PublishSingleFile=true -o ./publish/${{ matrix.runtime }}
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
@@ -77,16 +77,16 @@ jobs:
           dotnet-version: "8.0.x"
 
       - name: Publish win-x64
-        run: dotnet publish app/cli/NugLabs.Cli.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -o ./publish/win-x64
+        run: dotnet publish NugLabs.Cli.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -o ./publish/win-x64
 
       - name: Publish linux-x64
-        run: dotnet publish app/cli/NugLabs.Cli.csproj -c Release -r linux-x64 --self-contained true -p:PublishSingleFile=true -o ./publish/linux-x64
+        run: dotnet publish NugLabs.Cli.csproj -c Release -r linux-x64 --self-contained true -p:PublishSingleFile=true -o ./publish/linux-x64
 
       - name: Publish osx-x64
-        run: dotnet publish app/cli/NugLabs.Cli.csproj -c Release -r osx-x64 --self-contained true -p:PublishSingleFile=true -o ./publish/osx-x64
+        run: dotnet publish NugLabs.Cli.csproj -c Release -r osx-x64 --self-contained true -p:PublishSingleFile=true -o ./publish/osx-x64
 
       - name: Publish osx-arm64
-        run: dotnet publish app/cli/NugLabs.Cli.csproj -c Release -r osx-arm64 --self-contained true -p:PublishSingleFile=true -o ./publish/osx-arm64
+        run: dotnet publish NugLabs.Cli.csproj -c Release -r osx-arm64 --self-contained true -p:PublishSingleFile=true -o ./publish/osx-arm64
 
       - name: Rename binaries
         run: |
