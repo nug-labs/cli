@@ -11,7 +11,38 @@ public class StrainService
     public StrainService()
     {
         var baseDir = AppContext.BaseDirectory;
-        _dataPath = Path.Combine(baseDir, "assets", "data.json");
+        _dataPath = Path.Combine(baseDir, "data.json");
+
+        if (!File.Exists(_dataPath))
+        {
+            TrySeedFromEmbeddedSnapshot();
+        }
+    }
+
+    private void TrySeedFromEmbeddedSnapshot()
+    {
+        try
+        {
+            var assembly = typeof(StrainService).Assembly;
+            const string resourceName = "NugLabs.Cli.assets.data.json";
+
+            using var stream = assembly.GetManifestResourceStream(resourceName);
+            if (stream == null)
+                return;
+
+            using var reader = new StreamReader(stream);
+            var json = reader.ReadToEnd();
+
+            var dir = Path.GetDirectoryName(_dataPath);
+            if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir))
+                Directory.CreateDirectory(dir);
+
+            File.WriteAllText(_dataPath, json);
+        }
+        catch
+        {
+            // If seeding fails, we fall back to empty data.
+        }
     }
 
     public IReadOnlyList<Strain> GetAll()

@@ -14,9 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="assets\data.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <EmbeddedResource Include="assets\data.json" LogicalName="NugLabs.Cli.assets.data.json" />
   </ItemGroup>
 
 </Project>
