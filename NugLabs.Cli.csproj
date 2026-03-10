@@ -6,7 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <RootNamespace>NugLabs.Cli</RootNamespace>
-    <AssemblyName>nug-labs</AssemblyName>
+    <AssemblyName>nuglabs</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

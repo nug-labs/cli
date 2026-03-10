@@ -1,6 +1,6 @@
 # NugLabs CLI
 
-`nug-labs` is a cross‑platform command‑line tool for quickly looking up cannabis strains from the NugLabs strain catalogue.
+`nuglabs` is a cross‑platform command‑line tool for quickly looking up cannabis strains from the NugLabs strain catalogue.
 
 It is designed to work entirely from a **local JSON snapshot** while periodically refreshing from the Strain Data API at **`https://strains.nuglabs.co`**.
 
@@ -23,7 +23,7 @@ It is designed to work entirely from a **local JSON snapshot** while periodicall
 After building or downloading the CLI, run:
 
 ```bash
-nug-labs "Mimosa"
+nuglabs "Mimosa"
 ```
 
 Example output:
@@ -50,7 +50,7 @@ grow_notes: Those growing Mimosa with standard or feminized seeds should expect 
 You can also search by AKA:
 
 ```bash
-nug-labs "Purple Mimosa"
+nuglabs "Purple Mimosa"
 ```
 
 which will resolve to the same Mimosa entry via its alias.
