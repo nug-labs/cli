@@ -10,8 +10,10 @@ public class StrainService
 
     public StrainService()
     {
-        var baseDir = AppContext.BaseDirectory;
-        _dataPath = Path.Combine(baseDir, "data.json");
+        // Use a user-writable directory so the CLI works when the binary is in /usr/local/bin or Program Files
+        var home = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+        var cacheDir = Path.Combine(home, ".nuglabs");
+        _dataPath = Path.Combine(cacheDir, "data.json");
 
         if (!File.Exists(_dataPath))
         {
@@ -34,7 +36,7 @@ public class StrainService
             var json = reader.ReadToEnd();
 
             var dir = Path.GetDirectoryName(_dataPath);
-            if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir))
+            if (!string.IsNullOrEmpty(dir))
                 Directory.CreateDirectory(dir);
 
             File.WriteAllText(_dataPath, json);
