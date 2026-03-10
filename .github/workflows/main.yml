@@ -88,14 +88,22 @@ jobs:
       - name: Publish osx-arm64
         run: dotnet publish NugLabs.Cli.csproj -c Release -r osx-arm64 --self-contained true -p:PublishSingleFile=true -o ./publish/osx-arm64
 
+      - name: Pack artifacts
+        run: |
+          cd publish
+          zip -j nuglabs-windows-x64.zip win-x64/nuglabs.exe
+          zip -j nuglabs-linux-x64.zip linux-x64/nuglabs
+          zip -j nuglabs-macos-x64.zip osx-x64/nuglabs
+          zip -j nuglabs-macos-arm64.zip osx-arm64/nuglabs
+
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            ./publish/win-x64/nuglabs.exe
-            ./publish/linux-x64/nuglabs
-            ./publish/osx-x64/nuglabs
-            ./publish/osx-arm64/nuglabs
+            publish/nuglabs-windows-x64.zip
+            publish/nuglabs-linux-x64.zip
+            publish/nuglabs-macos-x64.zip
+            publish/nuglabs-macos-arm64.zip
           generate_release_notes: true
           draft: false
           prerelease: false
