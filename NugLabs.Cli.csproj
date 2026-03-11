@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <EmbeddedResource Include="assets\data.json" LogicalName="NugLabs.Cli.assets.data.json" />
+    <EmbeddedResource Include="assets\ascii.txt" LogicalName="NugLabs.Cli.assets.ascii.txt" />
   </ItemGroup>
 
 </Project>

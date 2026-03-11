@@ -10,22 +10,22 @@ Download the zip for your platform from [Releases](https://github.com/nug-labs/c
 
 **macOS (Apple Silicon):**
 ```bash
-curl -L https://github.com/nug-labs/cli/releases/download/v1.0.4/nuglabs-macos-arm64.zip -o nuglabs.zip && unzip -o nuglabs.zip && chmod +x nuglabs && sudo mv nuglabs /usr/local/bin/ && rm nuglabs.zip && echo "Installed! Run: nuglabs mimosa"
+curl -L https://github.com/nug-labs/cli/releases/download/v1.0.5/nuglabs-macos-arm64.zip -o nuglabs.zip && unzip -o nuglabs.zip && chmod +x nuglabs && sudo mv nuglabs /usr/local/bin/ && rm nuglabs.zip && echo "Installed! Run: nuglabs mimosa"
 ```
 
 **macOS (Intel):**
 ```bash
-curl -L https://github.com/nug-labs/cli/releases/download/v1.0.4/nuglabs-macos-x64.zip -o nuglabs.zip && unzip -o nuglabs.zip && chmod +x nuglabs && sudo mv nuglabs /usr/local/bin/ && rm nuglabs.zip && echo "Installed! Run: nuglabs mimosa"
+curl -L https://github.com/nug-labs/cli/releases/download/v1.0.5/nuglabs-macos-x64.zip -o nuglabs.zip && unzip -o nuglabs.zip && chmod +x nuglabs && sudo mv nuglabs /usr/local/bin/ && rm nuglabs.zip && echo "Installed! Run: nuglabs mimosa"
 ```
 
 **Linux (x64):**
 ```bash
-curl -L https://github.com/nug-labs/cli/releases/download/v1.0.4/nuglabs-linux-x64.zip -o nuglabs.zip && unzip -o nuglabs.zip && chmod +x nuglabs && sudo mv nuglabs /usr/local/bin/ && rm nuglabs.zip && echo "Installed! Run: nuglabs mimosa"
+curl -L https://github.com/nug-labs/cli/releases/download/v1.0.5/nuglabs-linux-x64.zip -o nuglabs.zip && unzip -o nuglabs.zip && chmod +x nuglabs && sudo mv nuglabs /usr/local/bin/ && rm nuglabs.zip && echo "Installed! Run: nuglabs mimosa"
 ```
 
 **Windows:** download `nuglabs-windows-x64.zip`, unzip, and add the folder to your `PATH` (or run `nuglabs.exe` from that folder).
 
-Replace `v1.0.3` with the latest release tag if needed.
+Replace `v1.0.5` with the latest release tag if needed.
 
 ## What it does
 
@@ -54,19 +54,25 @@ Example output:
 ```text
 name: Mimosa
 type: Hybrid
-category: Hybrid
+thc: 19%
+
+description: Mimosa is a hybrid strain created by crossing Clementine with Purple Punch, offering happy, uplifting, and motivating effects in small doses.
+
 akas: Purple Mimosa, Mimosas
 parents: Purple Punch, Clementine
 children: Kings Juice, Garlic Cocktail
-thc: 19%
-description: Mimosa is a hybrid strain created by crossing Clementine with Purple Punch, offering happy, uplifting, and motivating effects in small doses.
+
+
 top_effect: Energetic
 positive_effects: Focused, Energetic, Uplifted
 negative_effects: Anxious, Dry Mouth, Headache
+
 flavors: Citrus
 detailed_terpenes: Myrcene, Pinene, Caryophyllene
+
 helps_with: Anxiety, Stress, Depression
 rating: 4.43
+
 grow_notes: Those growing Mimosa with standard or feminized seeds should expect to pay $10–15 per seed...
 ```
 

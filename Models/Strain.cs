@@ -5,6 +5,8 @@ namespace NugLabs.Cli.Models;
 /// </summary>
 public class Strain
 {
+    private static bool _bannerPrinted;
+
     public Dictionary<string, object?> Data { get; } = new();
 
     public static Strain FromJsonElement(System.Text.Json.JsonElement obj)
@@ -38,6 +40,11 @@ public class Strain
 
     public void Print()
     {
+        // Print banner once per process, then a per-strain header
+        PrintBanner();
+        Console.WriteLine("------ Strain ------");
+        Console.WriteLine();
+
         // Helper to get a raw value by key
         object? Get(string key) =>
             Data.TryGetValue(key, out var v) ? v : null;
@@ -48,7 +55,7 @@ public class Strain
             if (value is null)
                 return null;
 
-            if (value is IEnumerable<object?> arr)
+            if (value is IEnumerable<object?> arr && value is not string)
             {
                 var joined = string.Join(", ", arr.Select(x => x?.ToString() ?? "").Where(s => !string.IsNullOrWhiteSpace(s)));
                 return string.IsNullOrWhiteSpace(joined) ? null : joined;
@@ -133,32 +140,52 @@ public class Strain
             printedKeys.Add(key);
         }
 
-        // Preferred logical order
+        // Preferred logical order with blank lines between logical groups
+        // Header block
         PrintIf("name", Get("name"));
         PrintIf("type", Get("type"));
-        PrintIf("category", Get("category"));
-        PrintIf("akas", Get("akas"));
-
-        if (!string.IsNullOrWhiteSpace(parents))
-            Console.WriteLine($"parents: {parents}");
-        if (!string.IsNullOrWhiteSpace(children))
-            Console.WriteLine($"children: {children}");
-
         PrintIf("thc", Get("thc"));
+        Console.WriteLine();
+
+        // Description block
         PrintIf("description", Get("description"));
+        Console.WriteLine();
+
+        // Genetics / relationships block
+        PrintIf("akas", Get("akas"));
+        if (!string.IsNullOrWhiteSpace(parents))
+        {
+            Console.WriteLine($"parents: {parents}");
+        }
+        if (!string.IsNullOrWhiteSpace(children))
+        {
+            Console.WriteLine($"children: {children}");
+        }
+        Console.WriteLine();
+
+        // Effects block
         PrintIf("top_effect", Get("top_effect"));
         PrintIf("positive_effects", Get("positive_effects"));
         PrintIf("negative_effects", Get("negative_effects"));
+        Console.WriteLine();
+
+        // Flavour / chemistry block
         PrintIf("flavors", Get("flavors"));
         PrintIf("detailed_terpenes", Get("detailed_terpenes"));
+        Console.WriteLine();
+
+        // Helps with / rating block
         PrintIf("helps_with", Get("helps_with"));
         PrintIf("rating", Get("rating"));
+        Console.WriteLine();
 
+        // Grow notes block
         if (!string.IsNullOrWhiteSpace(growNotes))
         {
             Console.WriteLine($"grow_notes: {growNotes}");
             printedKeys.Add("grow_info");
         }
+        Console.WriteLine();
 
         // Skip these keys entirely
         var skip = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
@@ -166,7 +193,8 @@ public class Strain
             "id",
             "review_count",
             "genetics",
-            "grow_info"
+            "grow_info",
+            "category"
         };
 
         // Print any remaining keys in alphabetical order
@@ -179,5 +207,36 @@ public class Strain
         }
 
         Console.WriteLine();
+    }
+
+    private static void PrintBanner()
+    {
+        if (_bannerPrinted)
+            return;
+
+        _bannerPrinted = true;
+
+        try
+        {
+            var assembly = typeof(Strain).Assembly;
+            const string resourceName = "NugLabs.Cli.assets.ascii.txt";
+
+            using var stream = assembly.GetManifestResourceStream(resourceName);
+            if (stream == null)
+                return;
+
+            using var reader = new StreamReader(stream);
+            var art = reader.ReadToEnd();
+
+            if (!string.IsNullOrWhiteSpace(art))
+            {
+                Console.WriteLine(art);
+                Console.WriteLine();
+            }
+        }
+        catch
+        {
+            // Ignore banner failures; CLI should still work.
+        }
     }
 }
