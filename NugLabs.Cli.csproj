@@ -7,7 +7,7 @@
     <Nullable>enable</Nullable>
     <PackageId>NugLabs.Cli</PackageId>
     <RootNamespace>NugLabs.Cli</RootNamespace>
-    <AssemblyName>NugLabs.Cli</AssemblyName>
+    <AssemblyName>nuglabs</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
