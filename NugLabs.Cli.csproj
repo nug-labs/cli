@@ -5,16 +5,17 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <PackageId>NugLabs.Cli</PackageId>
     <RootNamespace>NugLabs.Cli</RootNamespace>
-    <AssemblyName>nuglabs</AssemblyName>
+    <AssemblyName>NugLabs.Cli</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="NugLabs" Version="1.0.0" />
     <PackageReference Include="System.CommandLine" Version="2.0.0-beta4.22272.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="assets\data.json" LogicalName="NugLabs.Cli.assets.data.json" />
     <EmbeddedResource Include="assets\ascii.txt" LogicalName="NugLabs.Cli.assets.ascii.txt" />
   </ItemGroup>
 

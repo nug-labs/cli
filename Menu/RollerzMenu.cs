@@ -1,23 +1,26 @@
+using NugLabs;
 using NugLabs.Cli.Interfaces;
-using NugLabs.Cli.Models;
-using NugLabs.Cli.Services;
+using NugLabs.Cli.Output;
 
 namespace NugLabs.Cli.Menu;
 
 public class NugLabsMenu : IMenuDropper
 {
-    private readonly StrainService _strainService;
+    private readonly NugLabsClient _strainClient;
 
-    public NugLabsMenu(StrainService strainService)
+    public NugLabsMenu(NugLabsClient strainClient)
     {
-        _strainService = strainService;
+        _strainClient = strainClient;
     }
 
     public void Run(string[] args)
     {
         var raw = args.Length > 0 ? string.Join(" ", args) : "";
         var query = NormalizeQuery(raw);
-        var results = _strainService.Search(query);
+        var exact = _strainClient.GetStrainAsync(query).GetAwaiter().GetResult();
+        var results = exact is not null
+            ? new[] { exact }
+            : _strainClient.SearchStrains(query);
 
         if (results.Count == 0)
         {
@@ -26,7 +29,7 @@ public class NugLabsMenu : IMenuDropper
         }
 
         foreach (var strain in results)
-            strain.Print();
+            StrainConsolePrinter.Print(strain);
     }
 
     private static string NormalizeQuery(string input)
