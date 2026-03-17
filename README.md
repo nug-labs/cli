@@ -10,22 +10,22 @@ Download the zip for your platform from [Releases](https://github.com/nug-labs/c
 
 **macOS (Apple Silicon):**
 ```bash
-curl -L https://github.com/nug-labs/cli/releases/download/v1.0.6/nuglabs-macos-arm64.zip -o nuglabs.zip && unzip -o nuglabs.zip && chmod +x nuglabs && sudo mv nuglabs /usr/local/bin/ && rm nuglabs.zip && echo "Installed! Run: nuglabs mimosa"
+curl -L https://github.com/nug-labs/cli/releases/download/v1.0.7/nuglabs-macos-arm64.zip -o nuglabs.zip && unzip -o nuglabs.zip && chmod +x nuglabs && sudo mv nuglabs /usr/local/bin/ && rm nuglabs.zip && echo "Installed! Run: nuglabs mimosa"
 ```
 
 **macOS (Intel):**
 ```bash
-curl -L https://github.com/nug-labs/cli/releases/download/v1.0.6/nuglabs-macos-x64.zip -o nuglabs.zip && unzip -o nuglabs.zip && chmod +x nuglabs && sudo mv nuglabs /usr/local/bin/ && rm nuglabs.zip && echo "Installed! Run: nuglabs mimosa"
+curl -L https://github.com/nug-labs/cli/releases/download/v1.0.7/nuglabs-macos-x64.zip -o nuglabs.zip && unzip -o nuglabs.zip && chmod +x nuglabs && sudo mv nuglabs /usr/local/bin/ && rm nuglabs.zip && echo "Installed! Run: nuglabs mimosa"
 ```
 
 **Linux (x64):**
 ```bash
-curl -L https://github.com/nug-labs/cli/releases/download/v1.0.6/nuglabs-linux-x64.zip -o nuglabs.zip && unzip -o nuglabs.zip && chmod +x nuglabs && sudo mv nuglabs /usr/local/bin/ && rm nuglabs.zip && echo "Installed! Run: nuglabs mimosa"
+curl -L https://github.com/nug-labs/cli/releases/download/v1.0.7/nuglabs-linux-x64.zip -o nuglabs.zip && unzip -o nuglabs.zip && chmod +x nuglabs && sudo mv nuglabs /usr/local/bin/ && rm nuglabs.zip && echo "Installed! Run: nuglabs mimosa"
 ```
 
 **Windows:** download `nuglabs-windows-x64.zip`, unzip, and add the folder to your `PATH` (or run `nuglabs.exe` from that folder).
 
-Replace `v1.0.6` with the latest release tag if needed.
+Replace `v1.0.7` with the latest release tag if needed.
 
 ## What it does
 
