@@ -88,6 +88,13 @@ jobs:
       - name: Publish osx-arm64
         run: dotnet publish NugLabs.Cli.csproj -c Release -r osx-arm64 --self-contained true -p:PublishSingleFile=true -o ./publish/osx-arm64
 
+      - name: Normalize artifact names
+        run: |
+          cp publish/win-x64/NugLabs.Cli.exe publish/win-x64/nuglabs.exe
+          cp publish/linux-x64/NugLabs.Cli publish/linux-x64/nuglabs
+          cp publish/osx-x64/NugLabs.Cli publish/osx-x64/nuglabs
+          cp publish/osx-arm64/NugLabs.Cli publish/osx-arm64/nuglabs
+
       - name: Pack artifacts
         run: |
           cd publish
